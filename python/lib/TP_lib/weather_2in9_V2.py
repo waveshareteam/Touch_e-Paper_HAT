@@ -83,7 +83,8 @@ grey = 'rgb(235,235,235)'
 # epd.init()
 # epd.Clear()
 
-API_KEY = '82ec63bb0530e31e0ef9042786d195cc'
+# my API_KEY: 82ec63bb0530e31e0ef9042786d195cc, Please try to use your own KEY
+API_KEY = '******API KEY*******'
 LOCATION = 'Shenzhen'
 LATITUDE = '22.543097'
 LONGITUDE = '114.057861'
