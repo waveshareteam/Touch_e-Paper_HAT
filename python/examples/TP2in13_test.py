@@ -32,10 +32,10 @@ def Show_Photo_Small(image, small):
     for t in range(1, 5):
         if(small*2+t > 6):
             newimage = Image.open(os.path.join(picdir, PhotoPath_S[0]))
-            image.paste(newimage, ((t-1)/2*45+2, (t%2)*124+2))
+            image.paste(newimage, ((t-1)//2*45+2, (t%2)*124+2))
         else:
             newimage = Image.open(os.path.join(picdir, PhotoPath_S[small*2+t]))
-            image.paste(newimage, ((t-1)/2*45+2, (t%2)*124+2))
+            image.paste(newimage, ((t-1)//2*45+2, (t%2)*124+2))
 
 def Show_Photo_Large(image, large):
     if(large > 6):
@@ -112,7 +112,7 @@ try:
             print("--- Self Refresh ---\r\n")
         else:
             k += 1
-
+        # Read the touch input
         gt.GT_Scan(GT_Dev, GT_Old)
         if(GT_Old.X[0] == GT_Dev.X[0] and GT_Old.Y[0] == GT_Dev.Y[0] and GT_Old.S[0] == GT_Dev.S[0]):
             continue
@@ -180,7 +180,7 @@ try:
                     print("Select photo ...\r\n")
                     Page = 3
                     Read_BMP(PagePath[Page], 0, 0)
-                    Photo_L = GT_Dev.X[0]/46*2 + 2-GT_Dev.Y[0]/124 + Photo_S*2
+                    Photo_L = int(GT_Dev.X[0]/46*2 + 2-GT_Dev.Y[0]/124 + Photo_S*2)
                     Show_Photo_Large(image, Photo_L)
                     ReFlag = 1
                 if(ReFlag == 2):  # Refresh small photo
