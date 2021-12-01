@@ -5,7 +5,7 @@
 
 extern ICNT86_Dev ICNT86_Dev_Now, ICNT86_Dev_Old;
 extern int IIC_Address;
-pthread_t t1, t2;
+static pthread_t t1, t2;
 UBYTE flag_2in9=1, dis_lock=1, dis_flag=1;	
 UBYTE *BlackImage, *BlackImage_ASYNC;
 

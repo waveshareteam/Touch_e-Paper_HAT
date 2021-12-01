@@ -4,7 +4,7 @@
 
 extern GT1151_Dev Dev_Now, Dev_Old;
 extern int IIC_Address;
-pthread_t t1;
+static pthread_t t1;
 UBYTE flag_t = 1;	
 
 char *PhotoPath_S[7] = {"./pic/2in13/Photo_1_0.bmp",
