@@ -57,7 +57,7 @@ def Draw_Time(image, x, y, font1, font2):
     Date = time.strftime("%Y - %m - %d", time.localtime())
     imagefill=255
     if image.mode!="1":
-        imagefill = (255, 255, 255, 0)
+        imagefill = (255, 255, 255, 255)
     image.text((x, y), Time, font = font1, fill = imagefill)
     image.text((x-9, y+35), Date, font = font2, fill = imagefill)
 
