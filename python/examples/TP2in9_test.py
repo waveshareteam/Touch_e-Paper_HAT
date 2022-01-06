@@ -55,8 +55,12 @@ def Read_BMP(File, x, y):
 def Draw_Time(image, x, y, font1, font2):
     Time = time.strftime("%H : %M", time.localtime())
     Date = time.strftime("%Y - %m - %d", time.localtime())
-    image.text((x, y), Time, font = font1, fill = (255, 255, 255, 0))
-    image.text((x-9, y+35), Date, font = font2, fill = (255, 255, 255, 0))
+    imagefill=255
+    if image.mode!="1":
+        imagefill = (255, 255, 255, 0)
+    image.text((x, y), Time, font = font1, fill = imagefill)
+    image.text((x-9, y+35), Date, font = font2, fill = imagefill)
+
 
 try:
     logging.info("epd2in9_V2 Touch Demo")
