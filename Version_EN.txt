@@ -1,2 +1,3 @@
 2021-03-03: newly built.
 2021-06-05: Added 2.9inch Touch e-paper HAT routine.
+2022-04-13: Added 2.13inch_V3 Touch e-paper HAT routine.
