@@ -33,6 +33,8 @@ CFLAGS += $(MSG) $(DEBUG)
 ${TARGET}:${OBJ_O}
 	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB)
     
+$(shell mkdir -p $(DIR_BIN))
+
 ${DIR_BIN}/%.o:$(DIR_Examples)/%.c
 	$(CC) $(CFLAGS) -c  $< -o $@ -I $(DIR_Config) -I $(DIR_Driver)  -I $(DIR_EPD) -I $(DIR_GUI)
     
