@@ -428,6 +428,8 @@ class EPD:
         self.send_data(0x01)
         
         epdconfig.delay_ms(2000)
+
+    def Dev_exit(self):
         epdconfig.module_exit()
 
 ### END OF FILE ###
