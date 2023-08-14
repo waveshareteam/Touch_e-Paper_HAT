@@ -1,3 +1,4 @@
 ﻿2021-03-03：新创建。
 2021-06-05：新添加 2.9inch Touch e-Paper HAT 例程。
 2022-04-13：新添加 2.13inch_V3 Touch e-Paper HAT 例程。
+2023-08-14：新添加 2.13inch_V4 Touch e-Paper HAT 例程。
