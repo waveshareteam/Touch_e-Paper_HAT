@@ -37,7 +37,7 @@
 
 #include <stdio.h>
 
-#if DEBUG
+#if 1
 	#define Debug(__info,...) printf("Debug: " __info,##__VA_ARGS__)
 #else
 	#define Debug(__info,...)  

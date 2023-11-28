@@ -27,7 +27,7 @@
 # THE SOFTWARE.
 #
 
-import RPi.GPIO as GPIO
+import gpiozero
 import time
 from smbus import SMBus
 import spidev
@@ -50,11 +50,43 @@ address = 0x0
 # address = 0x48
 bus     = SMBus(1)
 
+
+GPIO_RST_PIN    = gpiozero.LED(EPD_RST_PIN)
+GPIO_DC_PIN     = gpiozero.LED(EPD_DC_PIN)
+# GPIO_CS_PIN     = gpiozero.LED(EPD_CS_PIN)
+GPIO_TRST       = gpiozero.LED(TRST)
+
+GPIO_BUSY_PIN   = gpiozero.Button(EPD_BUSY_PIN, pull_up = False)
+GPIO_INT        = gpiozero.Button(INT, pull_up = False)
+
+
 def digital_write(pin, value):
-    GPIO.output(pin, value)
+    if pin == EPD_RST_PIN:
+        if value:
+            GPIO_RST_PIN.on()
+        else:
+            GPIO_RST_PIN.off()
+    elif pin == EPD_DC_PIN:
+        if value:
+            GPIO_DC_PIN.on()
+        else:
+            GPIO_DC_PIN.off()
+    # elif pin == EPD_CS_PIN:
+    #     if value:
+    #         GPIO_CS_PIN.on()
+    #     else:
+    #         GPIO_CS_PIN.off()
+    elif pin == TRST:
+        if value:
+            GPIO_TRST.on()
+        else:
+            GPIO_TRST.off()
 
 def digital_read(pin):
-    return GPIO.input(pin)
+    if pin == EPD_BUSY_PIN:
+        return GPIO_BUSY_PIN.value
+    elif pin == INT:
+        return GPIO_INT.value
 
 def delay_ms(delaytime):
     time.sleep(delaytime / 1000.0)
@@ -79,16 +111,7 @@ def i2c_readbyte(reg, len):
     return rbuf
 
 def module_init():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    GPIO.setup(EPD_RST_PIN, GPIO.OUT)
-    GPIO.setup(EPD_DC_PIN, GPIO.OUT)
-    GPIO.setup(EPD_CS_PIN, GPIO.OUT)
-    GPIO.setup(EPD_BUSY_PIN, GPIO.IN)
-
-    GPIO.setup(TRST, GPIO.OUT)
-    GPIO.setup(INT, GPIO.IN)
-    
+   
     spi.max_speed_hz = 10000000
     spi.mode = 0b00
     
@@ -100,13 +123,18 @@ def module_exit():
     bus.close()
         
     logging.debug("close 5V, Module enters 0 power consumption ...")
-    GPIO.output(EPD_RST_PIN, 0)
-    GPIO.output(EPD_DC_PIN, 0)
-    GPIO.output(EPD_CS_PIN, 0)
-    
-    GPIO.output(TRST, 0)
-    
-    GPIO.cleanup()
+    GPIO_RST_PIN.off()
+    GPIO_DC_PIN.off()
+    # GPIO_CS_PIN.off()
+    GPIO_TRST.off()
+
+    GPIO_RST_PIN.close()
+    GPIO_DC_PIN.close()
+    # GPIO_CS_PIN.close()
+    GPIO_TRST.close()
+
+    GPIO_BUSY_PIN.close()
+    GPIO_INT.close()
 
 
 ### END OF FILE ###

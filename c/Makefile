@@ -11,18 +11,20 @@ OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
 
 TARGET = main
 
-USELIB = USE_BCM2835_LIB
+# USELIB = USE_BCM2835_LIB
 # USELIB = USE_WIRINGPI_LIB
-# USELIB = USE_DEV_LIB
+USELIB = USE_DEV_LIB
 
 DEBUG = -D $(USELIB)
 
 ifeq ($(USELIB), USE_BCM2835_LIB)
     LIB = -lbcm2835 -lm 
+	OBJ_O := $(filter-out ${DIR_BIN}/RPI_gpiod.o ${DIR_BIN}/dev_hardware_SPI.o ${DIR_BIN}/dev_hardware_i2c.o, ${OBJ_O})
 else ifeq ($(USELIB), USE_WIRINGPI_LIB)
     LIB = -lwiringPi -lm 
+	OBJ_O := $(filter-out ${DIR_BIN}/RPI_gpiod.o, ${OBJ_O})
 else ifeq ($(USELIB), USE_DEV_LIB)
-    LIB = -lm 
+    LIB = -lgpiod -lm
 endif
 LIB += -lpthread
 

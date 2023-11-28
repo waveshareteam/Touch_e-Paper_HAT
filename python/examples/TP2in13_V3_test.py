@@ -64,7 +64,7 @@ try:
     epd.Clear(0xFF)
 
     t = threading.Thread(target = pthread_irq)
-    t.setDaemon(True)
+    t.daemon = True
     t.start()
 
     # Drawing on the image

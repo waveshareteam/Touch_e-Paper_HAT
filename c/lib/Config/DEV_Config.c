@@ -34,7 +34,7 @@ void DEV_Digital_Write(UWORD Pin, UBYTE Value)
 #elif USE_WIRINGPI_LIB
 	digitalWrite(Pin, Value);
 #elif USE_DEV_LIB
-    SYSFS_GPIO_Write(Pin, Value);
+    GPIOD_Write(Pin, Value);
 #endif
 }
 
@@ -46,7 +46,7 @@ UBYTE DEV_Digital_Read(UWORD Pin)
 #elif USE_WIRINGPI_LIB
 	Read_value = digitalRead(Pin);
 #elif USE_DEV_LIB
-    Read_value = SYSFS_GPIO_Read(Pin);
+    Read_value = GPIOD_Read(Pin);
 #endif
     return Read_value;
 }
@@ -68,12 +68,11 @@ void DEV_GPIO_Mode(UWORD Pin, UWORD Mode)
 		// Debug (" %d OUT \r\n",Pin);
 	}
 #elif USE_DEV_LIB
-    SYSFS_GPIO_Export(Pin);
-    if(Mode == 0 || Mode == SYSFS_GPIO_IN){
-        SYSFS_GPIO_Direction(Pin, SYSFS_GPIO_IN);
+    if(Mode == 0 || Mode == GPIOD_IN){
+        GPIOD_Direction(Pin, GPIOD_IN);
         // printf("IN Pin = %d\r\n",Pin);
     }else{
-        SYSFS_GPIO_Direction(Pin, SYSFS_GPIO_OUT);
+        GPIOD_Direction(Pin, GPIOD_OUT);
         // printf("OUT Pin = %d\r\n",Pin);
     }
 #endif   
@@ -159,6 +158,7 @@ UBYTE DEV_ModuleInit(void)
 	DEV_HARDWARE_I2C_begin("/dev/i2c-1");
 	DEV_HARDWARE_I2C_setSlaveAddress(IIC_Address);
 #elif USE_DEV_LIB
+    GPIOD_Export();
 	DEV_GPIO_Init();
 
 	DEV_HARDWARE_I2C_begin("/dev/i2c-1");
@@ -239,7 +239,7 @@ UBYTE I2C_Read_Byte(UWORD Reg, char *Data, UBYTE len)
 	I2C_Write_WiringPi(Reg);
 	for(UBYTE i=0; i<len; i++) {
 		rbuf[i] = wiringPiI2CRead(fd);
-	}
+	}   
 #elif USE_DEV_LIB
 	I2C_Write_Byte(Reg, 0, 0);
     DEV_HARDWARE_I2C_read(rbuf, len);
@@ -268,6 +268,11 @@ void DEV_ModuleExit(void)
 #elif USE_DEV_LIB
     DEV_HARDWARE_I2C_end();
 	DEV_HARDWARE_SPI_end();
+    GPIOD_Unexport(EPD_CS_PIN);
+    GPIOD_Unexport(EPD_DC_PIN);
+    GPIOD_Unexport(EPD_RST_PIN);
+    GPIOD_Unexport(EPD_BUSY_PIN);
+    GPIOD_Unexport_GPIO();
 #endif
 }
 

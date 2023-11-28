@@ -347,9 +347,10 @@ Info: Return read data
 ******************************************************************************/
 int DEV_HARDWARE_SPI_Transfer(uint8_t *buf, uint32_t len)
 {
+    uint8_t rbuf[len];
     tr.len = len;
     tr.tx_buf =  (unsigned long)buf;
-    tr.rx_buf =  (unsigned long)buf;
+    tr.rx_buf =  (unsigned long)rbuf;
     
     //ioctl Operation, transmission of data
     if (ioctl(hardware_SPI.fd, SPI_IOC_MESSAGE(1), &tr)  < 1 ){  

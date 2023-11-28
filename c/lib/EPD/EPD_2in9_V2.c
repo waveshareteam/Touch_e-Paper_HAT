@@ -263,32 +263,32 @@ parameter:
 ******************************************************************************/
 void EPD_2IN9_V2_Display(UBYTE *Image)
 {
-	// UWORD i;	
+	UWORD i;	
 	EPD_2IN9_V2_SendCommand(0x24);   //write RAM for black(0)/white (1)
-	// for(i=0;i<4736;i++)
-	// {
-		// EPD_2IN9_V2_SendData(Image[i]);
-	// }
-	EPD_2IN9_V2_SendData2(Image, 4736);
+	for(i=0;i<4736;i++)
+	{
+		EPD_2IN9_V2_SendData(Image[i]);
+	}
+	// EPD_2IN9_V2_SendData2(Image, 4736);
 	EPD_2IN9_V2_TurnOnDisplay();	
 }
 
 void EPD_2IN9_V2_Display_Base(UBYTE *Image)
 {
-	// UWORD i;   
+	UWORD i;   
 
 	EPD_2IN9_V2_SendCommand(0x24);   //Write Black and White image to RAM
-	// for(i=0;i<4736;i++)
-	// {               
-		// EPD_2IN9_V2_SendData(Image[i]);
-	// }
-	EPD_2IN9_V2_SendData2(Image, 4736);
+	for(i=0;i<4736;i++)
+	{               
+		EPD_2IN9_V2_SendData(Image[i]);
+	}
+	// EPD_2IN9_V2_SendData2(Image, 4736);
 	EPD_2IN9_V2_SendCommand(0x26);   //Write Black and White image to RAM
-	// for(i=0;i<4736;i++)
-	// {               
-		// EPD_2IN9_V2_SendData(Image[i]);
-	// }
-	EPD_2IN9_V2_SendData2(Image, 4736);
+	for(i=0;i<4736;i++)
+	{               
+		EPD_2IN9_V2_SendData(Image[i]);
+	}
+	// EPD_2IN9_V2_SendData2(Image, 4736);
 	EPD_2IN9_V2_TurnOnDisplay();	
 }
 
@@ -331,7 +331,8 @@ void EPD_2IN9_V2_Display_Partial_Wait(UBYTE *Image)
 	// {
 		// EPD_2IN9_V2_SendData(Image[i]);
 	// } 
-	EPD_2IN9_V2_SendData2(Image, 4736);
+    EPD_2IN9_V2_SendData2(Image, 2500);
+	EPD_2IN9_V2_SendData2(Image+2500, 2236);
 	EPD_2IN9_V2_TurnOnDisplay_Partial_Wait();
 }
 
@@ -370,7 +371,8 @@ void EPD_2IN9_V2_Display_Partial(UBYTE *Image)
 	EPD_2IN9_V2_SetCursor(0, 0);
 
 	EPD_2IN9_V2_SendCommand(0x24);   //Write Black and White image to RAM
-	EPD_2IN9_V2_SendData2(Image, 4736);
+	EPD_2IN9_V2_SendData2(Image, 2500);
+	EPD_2IN9_V2_SendData2(Image+2500, 2236);
 	EPD_2IN9_V2_TurnOnDisplay_Partial();
 }
 
