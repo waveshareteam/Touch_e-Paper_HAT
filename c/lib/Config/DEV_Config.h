@@ -13,7 +13,11 @@
     #include <wiringPiSPI.h>
 	#include <wiringPiI2C.h>
     #include "dev_hardware_i2c.h"  
-#elif USE_DEV_LIB
+#elif USE_LGPIO_LIB
+    #include <lgpio.h>
+    #define LFLAGS 0
+    #define NUM_MAXBUF  4
+#elif USE_GPIOD_LIB
     #include "RPI_gpiod.h"
     #include "dev_hardware_i2c.h"   
 	#include "dev_hardware_SPI.h"
