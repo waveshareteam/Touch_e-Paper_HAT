@@ -77,6 +77,52 @@ UBYTE _WF_PARTIAL_2IN9_Wait[159] =
 0x22,0x17,0x41,0xB0,0x32,0x36,
 };
 
+unsigned char Gray4[159] =			
+{											
+	0x00,	0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L0	 //2.28s			
+    0x20,	0x60,	0x10,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L1				
+    0x28,	0x60,	0x14,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L2				
+    0x2A,	0x60,	0x15,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L3 				
+    0x00,	0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L4 				
+    0x00,	0x02,	0x00,	0x05,	0x14,	0x00,	0x00,						//TP, SR, RP of Group0				
+    0x1E,	0x1E,	0x00,	0x00,	0x00,	0x00,	0x01,						//TP, SR, RP of Group1				
+    0x00,	0x02,	0x00,	0x05,	0x14,	0x00,	0x00,						//TP, SR, RP of Group2				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group3				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group4				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group5				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group6				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group7				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group8				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group9				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group10				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group11				
+    0x24,	0x22,	0x22,	0x22,	0x23,	0x32,	0x00,	0x00,	0x00,				//FR, XON				
+    0x22,	0x17,	0x41,	0xAE,	0x32,	0x28,							//EOPT VGH VSH1 VSH2 VSL VCOM			
+};
+
+unsigned char WF_FULL[159] =
+{											
+0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L0	1.00S			
+0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L1				
+0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L2				
+0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L3 				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	//VS L4 				
+0x19,	0x19,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group0				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group1				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group2				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group3				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group4				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group5				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group6				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group7				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group8				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group9				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group10				
+0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,						//TP, SR, RP of Group11				
+0x24,	0x42,	0x22,	0x22,	0x23,	0x32,	0x00,	0x00,	0x00,				//FR, XON				
+0x22,	0x17,	0x41,	0xAE,	0x32,	0x38,							//EOPT VGH VSH1 VSH2 VSL VCOM				
+};
+
 /******************************************************************************
 function :	Software reset
 parameter:
@@ -152,6 +198,27 @@ static void EPD_2IN9_V2_LUT(UBYTE LUT)
 	EPD_2IN9_V2_ReadBusy();
 }
 
+static void EPD_2IN9_V2_LUT_by_host(UBYTE *lut)
+{
+	UBYTE count;
+	EPD_2IN9_V2_SendCommand(0x32);
+	for(count=0; count<153; count++) 
+		EPD_2IN9_V2_SendData(*lut++); 
+	EPD_2IN9_V2_ReadBusy();
+
+	EPD_2IN9_V2_SendCommand(0x3f);
+	EPD_2IN9_V2_SendData(*lut++);
+	EPD_2IN9_V2_SendCommand(0x03);	// gate voltage
+	EPD_2IN9_V2_SendData(*lut++);
+	EPD_2IN9_V2_SendCommand(0x04);	// source voltage
+	EPD_2IN9_V2_SendData(*lut++);	// VSH
+	EPD_2IN9_V2_SendData(*lut++);	// VSH2
+	EPD_2IN9_V2_SendData(*lut++);	// VSL
+	EPD_2IN9_V2_SendCommand(0x2c);		// VCOM
+	EPD_2IN9_V2_SendData(*lut++);
+	
+}   
+
 /******************************************************************************
 function :	Turn On Display
 parameter:
@@ -176,6 +243,14 @@ static void EPD_2IN9_V2_TurnOnDisplay_Partial_Wait(void)
 {
 	EPD_2IN9_V2_SendCommand(0x22); //Display Update Control
 	EPD_2IN9_V2_SendData(0x0F);   
+	EPD_2IN9_V2_SendCommand(0x20); //Activate Display Update Sequence
+	EPD_2IN9_V2_ReadBusy();
+}
+
+static void EPD_2IN9_V2_TurnOnDisplay_Gray4(void)
+{
+	EPD_2IN9_V2_SendCommand(0x22); //Display Update Control
+	EPD_2IN9_V2_SendData(0xC7);
 	EPD_2IN9_V2_SendCommand(0x20); //Activate Display Update Sequence
 	EPD_2IN9_V2_ReadBusy();
 }
@@ -240,6 +315,75 @@ void EPD_2IN9_V2_Init(void)
 	
 	EPD_2IN9_V2_SetCursor(0, 0);
 	EPD_2IN9_V2_ReadBusy();	
+}
+
+void EPD_2IN9_V2_Init_Fast(void)
+{
+	EPD_2IN9_V2_Reset();
+	DEV_Delay_ms(100);
+
+	EPD_2IN9_V2_ReadBusy();   
+	EPD_2IN9_V2_SendCommand(0x12); // soft reset
+	EPD_2IN9_V2_ReadBusy();
+	
+	EPD_2IN9_V2_SendCommand(0x01); //Driver output control      
+	EPD_2IN9_V2_SendData(0x27);
+	EPD_2IN9_V2_SendData(0x01);
+	EPD_2IN9_V2_SendData(0x00);
+	
+	EPD_2IN9_V2_SendCommand(0x11); //data entry mode       
+	EPD_2IN9_V2_SendData(0x03);
+	
+	EPD_2IN9_V2_SetWindows(0, 0, EPD_2IN9_V2_WIDTH-1, EPD_2IN9_V2_HEIGHT-1);
+	
+    EPD_2IN9_V2_SendCommand(0x3C);       
+	EPD_2IN9_V2_SendData(0x05);
+
+	EPD_2IN9_V2_SendCommand(0x21); //  Display update control
+	EPD_2IN9_V2_SendData(0x00);
+	EPD_2IN9_V2_SendData(0x80);	
+	
+	EPD_2IN9_V2_SetCursor(0, 0);
+	EPD_2IN9_V2_ReadBusy();	
+	
+	EPD_2IN9_V2_LUT_by_host(WF_FULL);
+}
+
+void EPD_2IN9_V2_Gray4_Init(void)
+{
+	EPD_2IN9_V2_Reset();
+	DEV_Delay_ms(100);
+
+	EPD_2IN9_V2_ReadBusy();   
+	EPD_2IN9_V2_SendCommand(0x12); // soft reset
+	EPD_2IN9_V2_ReadBusy();
+
+    EPD_2IN9_V2_SendCommand(0x74); //set analog block control       
+	EPD_2IN9_V2_SendData(0x54);
+	EPD_2IN9_V2_SendCommand(0x7E); //set digital block control          
+	EPD_2IN9_V2_SendData(0x3B);
+	
+	EPD_2IN9_V2_SendCommand(0x01); //Driver output control      
+	EPD_2IN9_V2_SendData(0x27);
+	EPD_2IN9_V2_SendData(0x01);
+	EPD_2IN9_V2_SendData(0x00);
+	
+	EPD_2IN9_V2_SendCommand(0x11); //data entry mode       
+	EPD_2IN9_V2_SendData(0x03);
+	
+	EPD_2IN9_V2_SetWindows(0, 0, EPD_2IN9_V2_WIDTH-1, EPD_2IN9_V2_HEIGHT-1);
+
+	EPD_2IN9_V2_SendCommand(0x3C);       
+	EPD_2IN9_V2_SendData(0x00);
+	
+    EPD_2IN9_V2_SendCommand(0x21); //  Display update control
+	EPD_2IN9_V2_SendData(0x00);
+	EPD_2IN9_V2_SendData(0x80);
+
+	EPD_2IN9_V2_SetCursor(0, 0);
+	EPD_2IN9_V2_ReadBusy();	
+
+	EPD_2IN9_V2_LUT_by_host(Gray4);
 }
 
 /******************************************************************************
@@ -374,6 +518,89 @@ void EPD_2IN9_V2_Display_Partial(UBYTE *Image)
 	EPD_2IN9_V2_SendData2(Image, 2500);
 	EPD_2IN9_V2_SendData2(Image+2500, 2236);
 	EPD_2IN9_V2_TurnOnDisplay_Partial();
+}
+
+void EPD_2IN9_V2_4GrayDisplay(UBYTE *Image)
+{
+    UDOUBLE i,j,k;
+    UBYTE temp1,temp2,temp3;
+
+    // old  data
+    EPD_2IN9_V2_SendCommand(0x24);
+    for(i=0; i<4736; i++) { 
+        temp3=0;
+        for(j=0; j<2; j++) {
+            temp1 = Image[i*2+j];
+            for(k=0; k<2; k++) {
+                temp2 = temp1&0xC0;
+                if(temp2 == 0xC0)
+                    temp3 |= 0x00;
+                else if(temp2 == 0x00)
+                    temp3 |= 0x01; 
+                else if(temp2 == 0x80)
+                    temp3 |= 0x01; 
+                else //0x40
+                    temp3 |= 0x00; 
+                temp3 <<= 1;
+
+                temp1 <<= 2;
+                temp2 = temp1&0xC0 ;
+                if(temp2 == 0xC0) 
+                    temp3 |= 0x00;
+                else if(temp2 == 0x00) 
+                    temp3 |= 0x01;
+                else if(temp2 == 0x80)
+                    temp3 |= 0x01; 
+                else    //0x40
+                    temp3 |= 0x00;	
+                if(j!=1 || k!=1)
+                    temp3 <<= 1;
+
+                temp1 <<= 2;
+            }
+        }
+        EPD_2IN9_V2_SendData(temp3);
+        // printf("%x ",temp3);
+    }
+
+    EPD_2IN9_V2_SendCommand(0x26);   //write RAM for black(0)/white (1)
+    for(i=0; i<4736; i++) {            
+        temp3=0;
+        for(j=0; j<2; j++) {
+            temp1 = Image[i*2+j];
+            for(k=0; k<2; k++) {
+                temp2 = temp1&0xC0 ;
+                if(temp2 == 0xC0)
+                    temp3 |= 0x00;//white
+                else if(temp2 == 0x00)
+                    temp3 |= 0x01;  //black
+                else if(temp2 == 0x80)
+                    temp3 |= 0x00;  //gray1
+                else //0x40
+                    temp3 |= 0x01; //gray2
+                temp3 <<= 1;
+
+                temp1 <<= 2;
+                temp2 = temp1&0xC0 ;
+                if(temp2 == 0xC0)  //white
+                    temp3 |= 0x00;
+                else if(temp2 == 0x00) //black
+                    temp3 |= 0x01;
+                else if(temp2 == 0x80)
+                    temp3 |= 0x00; //gray1
+                else    //0x40
+                    temp3 |= 0x01;	//gray2
+                if(j!=1 || k!=1)
+                    temp3 <<= 1;
+
+                temp1 <<= 2;
+            }
+        }
+        EPD_2IN9_V2_SendData(temp3);
+        // printf("%x ",temp3);
+    }
+
+    EPD_2IN9_V2_TurnOnDisplay_Gray4();
 }
 
 /******************************************************************************

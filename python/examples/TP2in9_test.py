@@ -66,11 +66,24 @@ try:
     logging.info("epd2in9_V2 Touch Demo")
     
     epd = epd2in9_V2.EPD_2IN9_V2()
+
+    
+
     tp = icnt86.INCT86()
     
     ICNT_Dev = icnt86.ICNT_Development()
     ICNT_Old = icnt86.ICNT_Development()
     
+    '''
+        Because the touch display requires a relatively fast refresh speed, the default 
+        needs to use partial refresh, and four gray levels cannot be used in this mode. 
+        Here, only four gray level picture refresh demonstration is used
+    '''
+    # epd.Init_4Gray()
+    # Himage = Image.open(os.path.join(picdir, '2in9_Scale.bmp'))
+    # epd.display_4Gray(epd.getbuffer_4Gray(Himage))
+    # time.sleep(2)
+
     logging.info("init and Clear")
     epd.init()
     tp.ICNT_Init()

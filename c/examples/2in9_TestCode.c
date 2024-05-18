@@ -107,6 +107,25 @@ void Get_Current_Time(PAINT_TIME *pTime)
 	pTime->Min = nowtime->tm_min;
 }
 
+
+int Test4gray_2in9(void)
+{
+    EPD_2IN9_V2_Gray4_Init();
+    UWORD Imagesize = ((EPD_2IN9_V2_WIDTH % 4 == 0)? (EPD_2IN9_V2_WIDTH / 4 ): (EPD_2IN9_V2_WIDTH / 4 + 1)) * EPD_2IN9_V2_HEIGHT;
+    if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
+        printf("Failed to apply for black memory...\r\n");
+        return -1;
+    }
+    Paint_NewImage(BlackImage, EPD_2IN9_V2_WIDTH, EPD_2IN9_V2_HEIGHT, 0, WHITE);
+    Paint_SetScale(4);
+    Paint_Clear(WHITE);
+    GUI_ReadBmp_4Gray("./pic/2in9/2in9_Scale.bmp", 0, 0);
+    EPD_2IN9_V2_4GrayDisplay(BlackImage);
+    DEV_Delay_ms(3000);
+    free(BlackImage);
+}
+
+
 int TestCode_2in9(void)
 {
 	IIC_Address = 0x48;
@@ -119,6 +138,13 @@ int TestCode_2in9(void)
 	
 	pthread_create(&t1, NULL, pthread_irq_2in9, NULL);
 	
+    /*
+        Because the touch display requires a relatively fast refresh speed, the default 
+        needs to use partial refresh, and four gray levels cannot be used in this mode. 
+        Here, only four gray level picture refresh demonstration is used
+    */
+    // Test4gray_2in9();
+
     EPD_2IN9_V2_Init();
 	
     EPD_2IN9_V2_Clear();

@@ -89,6 +89,49 @@ class EPD_2IN9_V2:
     0x22,0x17,0x41,0xB0,0x32,0x36,
     ]
 
+    Gray4 = [										
+    0x00,	0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,			
+    0x20,	0x60,	0x10,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,					
+    0x28,	0x60,	0x14,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,					
+    0x2A,	0x60,	0x15,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	 				
+    0x00,	0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	 				
+    0x00,	0x02,	0x00,	0x05,	0x14,	0x00,	0x00,										
+    0x1E,	0x1E,	0x00,	0x00,	0x00,	0x00,	0x01,									
+    0x00,	0x02,	0x00,	0x05,	0x14,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,									
+    0x24,	0x22,	0x22,	0x22,	0x23,	0x32,	0x00,	0x00,	0x00,							
+    0x22,	0x17,	0x41,	0xAE,	0x32,	0x28,							
+    ]	
+
+    WF_FULL =	[			
+    0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	
+    0x90,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x60,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,			
+    0x19,	0x19,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,			
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,				
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,					
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,					
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,			
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x00,	0x00,	0x00,	0x00,	0x00,	0x00,	0x00,		
+    0x24,	0x42,	0x22,	0x22,	0x23,	0x32,	0x00,	0x00,	0x00,		
+    0x22,	0x17,	0x41,	0xAE,	0x32,	0x38]
+
     # Hardware reset
     def reset(self):
         epdconfig.digital_write(self.reset_pin, 1)
@@ -140,6 +183,12 @@ class EPD_2IN9_V2:
         self.send_command(0x20) # MASTER_ACTIVATION
         self.ReadBusy()
 
+    def TurnOnDisplay_4Gray(self):
+        self.send_command(0x22) # DISPLAY_UPDATE_CONTROL_2
+        self.send_data(0xC7)
+        self.send_command(0x20) # MASTER_ACTIVATION
+        self.ReadBusy()
+
     def SendLut(self, lut):
         self.send_command(0x32)
         # for i in range(0, 153):
@@ -149,6 +198,25 @@ class EPD_2IN9_V2:
         else:
             self.send_data2(self.WF_PARTIAL_2IN9_Wait)
         self.ReadBusy()
+
+    def lut(self, lut):
+        self.send_command(0x32)
+        for i in range(0, 153):
+            self.send_data(lut[i])
+        self.ReadBusy()
+
+    def SetLut(self, lut):
+        self.lut(lut)
+        self.send_command(0x3f)
+        self.send_data(lut[153])
+        self.send_command(0x03);	# gate voltage
+        self.send_data(lut[154])
+        self.send_command(0x04);	# source voltage
+        self.send_data(lut[155])	# VSH
+        self.send_data(lut[156])	# VSH2
+        self.send_data(lut[157])	# VSL
+        self.send_command(0x2c);		# VCOM
+        self.send_data(lut[158])
 
     def SetWindow(self, x_start, y_start, x_end, y_end):
         self.send_command(0x44) # SET_RAM_X_ADDRESS_START_END_POSITION
@@ -177,26 +245,90 @@ class EPD_2IN9_V2:
         # EPD hardware init start     
         self.reset()
 
-        self.ReadBusy();   
-        self.send_command(0x12);  #SWRESET
-        self.ReadBusy();   
+        self.ReadBusy()
+        self.send_command(0x12)  #SWRESET
+        self.ReadBusy()
 
-        self.send_command(0x01); #Driver output control      
-        self.send_data(0x27);
-        self.send_data(0x01);
-        self.send_data(0x00);
+        self.send_command(0x01) #Driver output control      
+        self.send_data(0x27)
+        self.send_data(0x01)
+        self.send_data(0x00)
     
-        self.send_command(0x11); #data entry mode       
-        self.send_data(0x03);
+        self.send_command(0x11) #data entry mode       
+        self.send_data(0x03)
 
-        self.SetWindow(0, 0, self.width-1, self.height-1);
+        self.SetWindow(0, 0, self.width-1, self.height-1)
 
-        self.send_command(0x21); #  Display update control
-        self.send_data(0x00);
-        self.send_data(0x80);	
+        self.send_command(0x21) #  Display update control
+        self.send_data(0x00)
+        self.send_data(0x80)
     
-        self.SetCursor(0, 0);
-        self.ReadBusy();
+        self.SetCursor(0, 0)
+        self.ReadBusy()
+        # EPD hardware init end
+        return 0
+    
+    def init_Fast(self):
+        if (epdconfig.module_init() != 0):
+            return -1
+        # EPD hardware init start     
+        self.reset()
+
+        self.ReadBusy()
+        self.send_command(0x12)  #SWRESET
+        self.ReadBusy() 
+
+        self.send_command(0x01) #Driver output control      
+        self.send_data(0x27)
+        self.send_data(0x01)
+        self.send_data(0x00)
+    
+        self.send_command(0x11) #data entry mode       
+        self.send_data(0x03)
+
+        self.SetWindow(0, 0, self.width-1, self.height-1)
+
+        self.send_command(0x3C)   
+        self.send_data(0x05)
+
+        self.send_command(0x21) #  Display update control
+        self.send_data(0x00)
+        self.send_data(0x80)
+    
+        self.SetCursor(0, 0)
+        self.ReadBusy()
+
+        self.SetLut(self.WF_FULL)
+        # EPD hardware init end
+        return 0
+    
+    def Init_4Gray(self):
+        if (epdconfig.module_init() != 0):
+            return -1
+        self.reset()
+        epdconfig.delay_ms(100)
+
+        self.ReadBusy()
+        self.send_command(0x12)  #SWRESET
+        self.ReadBusy() 
+
+        self.send_command(0x01) #Driver output control      
+        self.send_data(0x27)
+        self.send_data(0x01)
+        self.send_data(0x00)
+    
+        self.send_command(0x11) #data entry mode       
+        self.send_data(0x03)
+
+        self.SetWindow(8, 0, self.width, self.height-1)
+
+        self.send_command(0x3C)
+        self.send_data(0x04)
+    
+        self.SetCursor(1, 0)
+        self.ReadBusy()
+
+        self.SetLut(self.Gray4)
         # EPD hardware init end
         return 0
 
@@ -222,6 +354,42 @@ class EPD_2IN9_V2:
                     newy = self.height - x - 1
                     if pixels[x, y] == 0:
                         buf[int((newx + newy*self.width) / 8)] &= ~(0x80 >> (y % 8))
+        return buf
+    
+    def getbuffer_4Gray(self, image):
+        # logger.debug("bufsiz = ",int(self.width/8) * self.height)
+        buf = [0xFF] * (int(self.width / 4) * self.height)
+        image_monocolor = image.convert('L')
+        imwidth, imheight = image_monocolor.size
+        pixels = image_monocolor.load()
+        i=0
+        # logger.debug("imwidth = %d, imheight = %d",imwidth,imheight)
+        if(imwidth == self.width and imheight == self.height):
+            # logger.debug("Vertical")
+            for y in range(imheight):
+                for x in range(imwidth):
+                    # Set the bits for the column of pixels at the current position.
+                    if(pixels[x, y] == 0xC0):
+                        pixels[x, y] = 0x80
+                    elif (pixels[x, y] == 0x80):
+                        pixels[x, y] = 0x40
+                    i= i+1
+                    if(i%4 == 0):
+                        buf[int((x + (y * self.width))/4)] = ((pixels[x-3, y]&0xc0) | (pixels[x-2, y]&0xc0)>>2 | (pixels[x-1, y]&0xc0)>>4 | (pixels[x, y]&0xc0)>>6)
+                        
+        elif(imwidth == self.height and imheight == self.width):
+            # logger.debug("Horizontal")
+            for x in range(imwidth):
+                for y in range(imheight):
+                    newx = y
+                    newy = self.height - x - 1
+                    if(pixels[x, y] == 0xC0):
+                        pixels[x, y] = 0x80
+                    elif (pixels[x, y] == 0x80):
+                        pixels[x, y] = 0x40
+                    i= i+1
+                    if(i%4 == 0):
+                        buf[int((newx + (newy * self.width))/4)] = ((pixels[x, y-3]&0xc0) | (pixels[x, y-2]&0xc0)>>2 | (pixels[x, y-1]&0xc0)>>4 | (pixels[x, y]&0xc0)>>6) 
         return buf
 
     def display(self, image):
@@ -261,26 +429,26 @@ class EPD_2IN9_V2:
         # epdconfig.digital_write(self.reset_pin, 1)
         # epdconfig.delay_ms(2)   
         
-        self.SendLut(1);
-        self.send_command(0x37); 
-        self.send_data(0x00);  
-        self.send_data(0x00);  
-        self.send_data(0x00);  
-        self.send_data(0x00); 
-        self.send_data(0x00);  	
-        self.send_data(0x40);  
-        self.send_data(0x00);  
-        self.send_data(0x00);   
-        self.send_data(0x00);  
-        self.send_data(0x00);
+        self.SendLut(1)
+        self.send_command(0x37)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)	
+        self.send_data(0x40)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
 
-        self.send_command(0x3C); #BorderWavefrom
-        self.send_data(0x80);
+        self.send_command(0x3C) #BorderWavefrom
+        self.send_data(0x80)
 
-        self.send_command(0x22); 
-        self.send_data(0xC0);   
-        self.send_command(0x20);
-        self.ReadBusy();
+        self.send_command(0x22)
+        self.send_data(0xC0)
+        self.send_command(0x20)
+        self.ReadBusy()
 
         self.SetWindow(0, 0, self.width - 1, self.height - 1)
         self.SetCursor(0, 0)
@@ -302,26 +470,26 @@ class EPD_2IN9_V2:
         epdconfig.digital_write(self.reset_pin, 1)
         # epdconfig.delay_ms(2)   
         
-        self.SendLut(0);
-        self.send_command(0x37); 
-        self.send_data(0x00);  
-        self.send_data(0x00);  
-        self.send_data(0x00);  
-        self.send_data(0x00); 
-        self.send_data(0x00);  	
-        self.send_data(0x40);  
-        self.send_data(0x00);  
-        self.send_data(0x00);   
-        self.send_data(0x00);  
-        self.send_data(0x00);
+        self.SendLut(0)
+        self.send_command(0x37)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x40)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
+        self.send_data(0x00)
 
-        self.send_command(0x3C); #BorderWavefrom
-        self.send_data(0x80);
+        self.send_command(0x3C) #BorderWavefrom
+        self.send_data(0x80)
 
-        self.send_command(0x22); 
-        self.send_data(0xC0);   
-        self.send_command(0x20);
-        self.ReadBusy();
+        self.send_command(0x22)
+        self.send_data(0xC0)
+        self.send_command(0x20)
+        self.ReadBusy()
 
         self.SetWindow(0, 0, self.width - 1, self.height - 1)
         self.SetCursor(0, 0)
@@ -340,6 +508,73 @@ class EPD_2IN9_V2:
             for i in range(0, int(self.width / 8)):
                 self.send_data(color)   
         self.TurnOnDisplay()
+    
+    def display_4Gray(self, image):
+        self.send_command(0x24)
+        for i in range(0, 4736):
+            temp3=0
+            for j in range(0, 2):
+                temp1 = image[i*2+j]
+                for k in range(0, 2):
+                    temp2 = temp1&0xC0 
+                    if(temp2 == 0xC0):
+                        temp3 |= 0x00
+                    elif(temp2 == 0x00):
+                        temp3 |= 0x01  
+                    elif(temp2 == 0x80): 
+                        temp3 |= 0x01 
+                    else: #0x40
+                        temp3 |= 0x00 
+                    temp3 <<= 1	
+                    
+                    temp1 <<= 2
+                    temp2 = temp1&0xC0 
+                    if(temp2 == 0xC0): 
+                        temp3 |= 0x00
+                    elif(temp2 == 0x00): 
+                        temp3 |= 0x01
+                    elif(temp2 == 0x80):
+                        temp3 |= 0x01
+                    else :   #0x40
+                        temp3 |= 0x00	
+                    if(j!=1 or k!=1):				
+                        temp3 <<= 1
+                    temp1 <<= 2
+            self.send_data(temp3)
+            
+        self.send_command(0x26)	       
+        for i in range(0, 4736):
+            temp3=0
+            for j in range(0, 2):
+                temp1 = image[i*2+j]
+                for k in range(0, 2):
+                    temp2 = temp1&0xC0 
+                    if(temp2 == 0xC0):
+                        temp3 |= 0x00
+                    elif(temp2 == 0x00):
+                        temp3 |= 0x01
+                    elif(temp2 == 0x80):
+                        temp3 |= 0x00
+                    else: #0x40
+                        temp3 |= 0x01 
+                    temp3 <<= 1	
+                    
+                    temp1 <<= 2
+                    temp2 = temp1&0xC0 
+                    if(temp2 == 0xC0): 
+                        temp3 |= 0x00
+                    elif(temp2 == 0x00): 
+                        temp3 |= 0x01
+                    elif(temp2 == 0x80):
+                        temp3 |= 0x00 
+                    else:    #0x40
+                        temp3 |= 0x01	
+                    if(j!=1 or k!=1):					
+                        temp3 <<= 1
+                    temp1 <<= 2
+            self.send_data(temp3)
+
+        self.TurnOnDisplay_4Gray()
 
     def sleep(self):
         self.send_command(0x10) # DEEP_SLEEP_MODE

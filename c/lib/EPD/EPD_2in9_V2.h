@@ -25,7 +25,7 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
+# THE SOFTWARE. 
 #
 ******************************************************************************/
 #ifndef __EPD_2IN9_V2_H_
@@ -45,5 +45,9 @@ void EPD_2IN9_V2_Display_Partial(UBYTE *Image);
 void EPD_2IN9_V2_Sleep(void);
 
 void EPD_2IN9_V2_Display_Partial_Wait(UBYTE *Image);
+
+void EPD_2IN9_V2_Init_Fast(void);
+void EPD_2IN9_V2_Gray4_Init(void);
+void EPD_2IN9_V2_4GrayDisplay(UBYTE *Image);
 
 #endif
